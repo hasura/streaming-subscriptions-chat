@@ -59,8 +59,7 @@ const addUser = gql`
 `;
 
 export default function Main(props) {
-  const [isLoggedIn, setIsLoggedIn] = useState(true);
-  const [username, setUsername] = useState(generateUsername().dashed);
+  const [username] = useState(generateUsername().dashed);
   const [userId, setUserId] = useState(null);
 
   const [isDarkThemeActive, toggleActiveTheme] = useState(true);

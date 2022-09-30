@@ -1,25 +1,25 @@
-import { useCallback, useEffect, useRef, useState } from 'react';
-import { gql, useLazyQuery, useQuery, useSubscription } from '@apollo/client';
+import { useCallback, useEffect, useRef, useState } from "react";
+import { gql, useQuery, useSubscription } from "@apollo/client";
 
-import '../App.js';
-import Banner from './Banner';
-import MessageList from './MessageList';
-import { StyledMessagesList } from '../styles/StyledChatApp.js';
+import "../App.js";
+import Banner from "./Banner";
+import MessageList from "./MessageList";
+import { StyledMessagesList } from "../styles/StyledChatApp.js";
 
-const fetchOldMessages = gql`
-  query ($last_received_ts: timestamptz) {
-    message(
-      limit: 10
-      order_by: { timestamp: desc }
-      where: { timestamp: { _lt: $last_received_ts } }
-    ) {
-      id
-      text
-      username
-      timestamp
-    }
-  }
-`;
+// const fetchOldMessages = gql`
+//   query ($last_received_ts: timestamptz) {
+//     message(
+//       limit: 10
+//       order_by: { timestamp: desc }
+//       where: { timestamp: { _lt: $last_received_ts } }
+//     ) {
+//       id
+//       text
+//       username
+//       timestamp
+//     }
+//   }
+// `;
 
 const fetchMessages = gql`
   {
@@ -57,7 +57,7 @@ export default function RenderMessages({
   const [bottom, setBottom] = useState(true);
   const [initialLoad, setInitialLoad] = useState(false);
   const [initialTimestamp, setInitialTimestamp] = useState(
-    '2018-08-21T19:58:46.987552+00:00'
+    "2018-08-21T19:58:46.987552+00:00"
   );
 
   const listInnerRef = useRef();
@@ -74,19 +74,19 @@ export default function RenderMessages({
       addOldMessages(data.message);
       setInitialLoad(true);
       setInitialTimestamp(
-        data.message[0]?.timestamp || '2018-08-21T19:58:46.987552+00:00'
+        data.message[0]?.timestamp || "2018-08-21T19:58:46.987552+00:00"
       );
     },
   });
 
-  const [loadOldMessages, { loading: loadingOldMessages }] = useLazyQuery(
-    fetchOldMessages,
-    {
-      onCompleted: (data) => {
-        setMessages([...[...data.message].reverse(), ...messages]);
-      },
-    }
-  );
+  // const [loadOldMessages, { loading: loadingOldMessages }] = useLazyQuery(
+  //   fetchOldMessages,
+  //   {
+  //     onCompleted: (data) => {
+  //       setMessages([...[...data.message].reverse(), ...messages]);
+  //     },
+  //   }
+  // );
 
   useSubscription(subscribeToNewMessages, {
     skip: !initialLoad,
@@ -114,15 +114,15 @@ export default function RenderMessages({
   // scroll to bottom
   const scrollToBottom = () => {
     document
-      ?.getElementById('lastMessage')
-      ?.scrollIntoView({ behavior: 'instant' });
+      ?.getElementById("lastMessage")
+      ?.scrollIntoView({ behavior: "instant" });
   };
 
   // scroll to the new message
   const scrollToNewMessage = () => {
     document
-      ?.getElementById('newMessage')
-      ?.scrollIntoView({ behavior: 'instant' });
+      ?.getElementById("newMessage")
+      ?.scrollIntoView({ behavior: "instant" });
   };
 
   if (newMessages.length === 0 && bottom) {
@@ -181,8 +181,8 @@ export default function RenderMessages({
           (window.innerWidth || document.documentElement.clientWidth)
       );
     };
-    if (document.getElementById('lastMessage')) {
-      return !isInViewport(document.getElementById('lastMessage'));
+    if (document.getElementById("lastMessage")) {
+      return !isInViewport(document.getElementById("lastMessage"));
     }
     return false;
   };
@@ -219,7 +219,7 @@ export default function RenderMessages({
       <MessageList messages={messages} isNew={false} username={username} />
       {/* Show old/new message separation */}
       <div id="newMessage" className="oldNewSeparator">
-        {newMessages.length !== 0 ? 'New messages' : null}
+        {newMessages.length !== 0 ? "New messages" : null}
       </div>
 
       {/* render new messages */}
