@@ -331,9 +331,10 @@ export const StyledLeftSection = styled.div`
       display: flex;
       align-items: flex-start;
 
-      flex-direction: ${(props) => (props?.showMobileMenu ? 'column' : '')};
+      flex-direction: ${(props) => (props?.showMobileMenu ? 'column' : 'row')};
+      justify-content: ${(props) =>
+        props?.showMobileMenu ? 'flex-start' : 'space-between'};
 
-      justify-content: space-between;
       padding: 24px 24px 0;
 
       min-height: ${(props) => (props?.showMobileMenu ? '100vh' : '80px')};
@@ -342,7 +343,7 @@ export const StyledLeftSection = styled.div`
 
       .mobile-data-wrapper {
         width: 100%;
-        margin-top: 8px;
+        padding-top: 32px;
 
         .close-btn {
           position: absolute;
@@ -350,11 +351,6 @@ export const StyledLeftSection = styled.div`
           right: 35px;
           color: #fff;
           font-size: 20px;
-        }
-
-        .userList {
-          min-height: 30vh;
-          max-height: 30vh;
         }
       }
 
@@ -412,6 +408,7 @@ export const StyledOnlineUsers = styled.div`
     padding: 25px 20px;
     display: flex;
     height: 40%;
+    align-content: flex-start;
     min-height: 38.2vh;
     max-height: 38.2vh;
     overflow-y: auto;
