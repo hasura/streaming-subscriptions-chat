@@ -342,7 +342,7 @@ export const StyledLeftSection = styled.div`
 
       .mobile-data-wrapper {
         width: 100%;
-        margin-top: 35px;
+        margin-top: 8px;
 
         .close-btn {
           position: absolute;
@@ -542,6 +542,11 @@ export const StyledMessagesList = styled.div`
 
   #newMessage {
     color: ${({ theme }) => theme.colors.text};
+  }
+
+  @media (max-width: 600px) {
+    padding-top: 80px;
+    height: auto;
   }
 `;
 
