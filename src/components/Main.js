@@ -1,13 +1,13 @@
-import React, { useEffect, useState } from "react";
-import { ThemeProvider } from "styled-components";
-import { ApolloConsumer, gql, useMutation } from "@apollo/client";
-import generateUsername from "project-name-generator";
-import styled from "styled-components";
+import React, { useEffect, useState } from 'react';
+import { ThemeProvider } from 'styled-components';
+import { ApolloConsumer, gql, useMutation } from '@apollo/client';
+import generateUsername from 'project-name-generator';
+import styled from 'styled-components';
 
-import { darkTheme, lightTheme } from "../styles/theme";
-import Chat from "./Chat";
+import { darkTheme, lightTheme } from '../styles/theme';
+import Chat from './Chat';
 // import LandingPage from './LandingPage';
-import "../App.css";
+import '../App.css';
 
 const StyledApp = styled.div`
   background: ${({ theme }) => theme.colors.background};
@@ -19,19 +19,19 @@ const StyledApp = styled.div`
 
   ::-webkit-scrollbar {
     background: ${({ theme }) =>
-      theme.name === "dark" ? "#1c262f" : "#FAFAFA"};
+      theme.name === 'dark' ? '#1c262f' : '#FAFAFA'};
     width: 12px;
   }
 
   ::-webkit-scrollbar-thumb {
     background: ${({ theme }) =>
-      theme.name === "dark" ? "#394e60" : "#A6B6C4"};
+      theme.name === 'dark' ? '#394e60' : '#A6B6C4'};
     border-radius: 80px;
     width: 12px;
   }
 
   @media (min-width: 1250px) {
-    background-image: url("https://graphql-engine-cdn.hasura.io/assets/main-site/hasura_sf_illus.png");
+    background-image: url('https://graphql-engine-cdn.hasura.io/assets/main-site/hasura_sf_illus.png');
     background-repeat: no-repeat;
     background-position: 95% 10%;
   }
@@ -43,6 +43,11 @@ const StyledApp = styled.div`
 
   @media (max-width: 590px) {
     padding: 0;
+  }
+
+  @media (min-width: 2000px) {
+    background-position: 93% 20%;
+    /* background-size: 250px; */
   }
 `;
 
@@ -79,7 +84,7 @@ export default function Main(props) {
     toggleActiveTheme(!isDarkThemeActive);
 
     window.localStorage.setItem(
-      "isDarkThemeActive",
+      'isDarkThemeActive',
       JSON.stringify(!isDarkThemeActive)
     );
   };
