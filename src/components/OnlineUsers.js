@@ -105,7 +105,9 @@ function OnlineUsers({ dataStream }) {
             <p className="close-btn" onClick={() => toggleMobileMenu(false)}>
               <i className="fa fa-times"></i>
             </p>
-            <div className="onlineUsers">{subscriptionData(false)}</div>
+            <div className="onlineUsers online-users-wrapper-div">
+              {subscriptionData(false)}
+            </div>
             <div className="onlineUsers">{subscriptionStreamData(false)}</div>
           </div>
         )}

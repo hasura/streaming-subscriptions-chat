@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
 export const ThemeSwitch = styled.div`
   display: flex;
@@ -41,7 +41,7 @@ export const ThemeSwitch = styled.div`
 
   .slider:before {
     position: absolute;
-    content: '';
+    content: "";
     height: 28px;
     width: 28px;
     left: 3px;
@@ -53,7 +53,7 @@ export const ThemeSwitch = styled.div`
     box-shadow: 3.21429px 1.28571px 8.35714px -1.28571px rgba(0, 0, 0, 0.3),
       0px 2.57143px 3.85714px -0.642857px rgba(0, 0, 0, 0.1);
     background: #344658
-      url('https://graphql-engine-cdn.hasura.io/assets/main-site/bulb_night.svg');
+      url("https://graphql-engine-cdn.hasura.io/assets/main-site/bulb_night.svg");
     background-repeat: no-repeat;
     background-position: center;
   }
@@ -68,7 +68,7 @@ export const ThemeSwitch = styled.div`
     -ms-transform: translateX(36px);
     transform: translateX(36px);
     background: #fff
-      url('https://graphql-engine-cdn.hasura.io/assets/main-site/bulb_day.svg');
+      url("https://graphql-engine-cdn.hasura.io/assets/main-site/bulb_day.svg");
     background-repeat: no-repeat;
     background-position: center;
   }
@@ -331,18 +331,19 @@ export const StyledLeftSection = styled.div`
       display: flex;
       align-items: flex-start;
 
-      flex-direction: ${(props) => (props?.showMobileMenu ? 'column' : '')};
+      flex-direction: ${(props) => (props?.showMobileMenu ? "column" : "row")};
+      justify-content: ${(props) =>
+        props?.showMobileMenu ? "flex-start" : "space-between"};
 
-      justify-content: space-between;
       padding: 24px 24px 0;
 
-      min-height: ${(props) => (props?.showMobileMenu ? '100vh' : '80px')};
-      height: ${(props) => (props?.showMobileMenu ? '100%' : '80px')};
+      min-height: ${(props) => (props?.showMobileMenu ? "100vh" : "80px")};
+      height: ${(props) => (props?.showMobileMenu ? "100%" : "80px")};
       overflow-y: scroll;
 
       .mobile-data-wrapper {
         width: 100%;
-        margin-top: 35px;
+        padding-top: 32px;
 
         .close-btn {
           position: absolute;
@@ -350,11 +351,6 @@ export const StyledLeftSection = styled.div`
           right: 35px;
           color: #fff;
           font-size: 20px;
-        }
-
-        .userList {
-          min-height: 30vh;
-          max-height: 30vh;
         }
       }
 
@@ -412,6 +408,7 @@ export const StyledOnlineUsers = styled.div`
     padding: 25px 20px;
     display: flex;
     height: 40%;
+    align-content: flex-start;
     min-height: 38.2vh;
     max-height: 38.2vh;
     overflow-y: auto;
@@ -439,13 +436,13 @@ export const StyledOnlineUsers = styled.div`
 
     ::-webkit-scrollbar {
       background: ${({ theme }) =>
-        theme.name === 'dark' ? '#1c262f' : '#FAFAFA'};
+        theme.name === "dark" ? "#1c262f" : "#FAFAFA"};
       width: 12px;
     }
 
     ::-webkit-scrollbar-thumb {
       background: ${({ theme }) =>
-        theme.name === 'dark' ? '#394e60' : '#A6B6C4'};
+        theme.name === "dark" ? "#394e60" : "#A6B6C4"};
       border-radius: 80px;
       width: 12px;
     }
@@ -529,19 +526,24 @@ export const StyledMessagesList = styled.div`
 
   ::-webkit-scrollbar {
     background: ${({ theme }) =>
-      theme.name === 'dark' ? '#1c262f' : '#FAFAFA'};
+      theme.name === "dark" ? "#1c262f" : "#FAFAFA"};
     width: 12px;
   }
 
   ::-webkit-scrollbar-thumb {
     background: ${({ theme }) =>
-      theme.name === 'dark' ? '#394e60' : '#A6B6C4'};
+      theme.name === "dark" ? "#394e60" : "#A6B6C4"};
     border-radius: 80px;
     width: 12px;
   }
 
   #newMessage {
     color: ${({ theme }) => theme.colors.text};
+  }
+
+  @media (max-width: 600px) {
+    padding-top: 80px;
+    height: auto;
   }
 `;
 

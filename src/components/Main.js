@@ -44,6 +44,11 @@ const StyledApp = styled.div`
   @media (max-width: 590px) {
     padding: 0;
   }
+
+  @media (min-width: 2000px) {
+    background-position: 93% 20%;
+    /* background-size: 250px; */
+  }
 `;
 
 const addUser = gql`
