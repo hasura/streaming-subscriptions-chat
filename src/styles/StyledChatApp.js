@@ -452,6 +452,7 @@ export const StyledOnlineUsers = styled.div`
     color: ${({ theme }) => theme.colors.text};
     font-size: 14px;
     font-weight: 500;
+    white-space: break-spaces;
   }
 
   @media (min-width: 1560px) {
