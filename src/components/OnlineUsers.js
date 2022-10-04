@@ -97,7 +97,7 @@ function OnlineUsers({ dataStream }) {
           }
         >
           <p className="subscription-stream">
-            {JSON.stringify(dataStream?.message_stream, undefined, "\t")}
+            {JSON.stringify(dataStream?.message_stream, undefined, 2)}
           </p>
         </ul>
       ) : (
