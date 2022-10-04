@@ -62,7 +62,7 @@ function OnlineUsers({ dataStream }) {
 
   const { data } = useSubscription(fetchOnlineUsersSubscription);
 
-  const [isSubscriptionTabActive, toggleSubscriptionTab] = useState(false);
+  const [isSubscriptionTabActive, toggleSubscriptionTab] = useState(true);
 
   const toggleMobileView = () => {
     setMobileView(!showMobileView);
