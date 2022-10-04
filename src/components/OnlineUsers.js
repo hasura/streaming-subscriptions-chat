@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import styled from "styled-components";
 import { gql, useSubscription } from "@apollo/client";
 
 import {
@@ -7,6 +8,43 @@ import {
   StyledOnlineUserCircle,
 } from "../styles/StyledChatApp";
 import { getUserBgColor } from "./MessageList";
+
+const StyledQueryTab = styled.div`
+  display: flex;
+  padding: 12px !important;
+
+  p {
+    flex: 1;
+    text-align: center;
+    height: 32px;
+    line-height: 32px;
+    margin: 0;
+    cursor: pointer;
+  }
+
+  .active {
+    background: #344658;
+    border-radius: 4px;
+  }
+
+  code {
+    background: #141c22 !important;
+  }
+`;
+
+const streamingSubQuery = `{
+  subscription ($last_received_ts: timestamptz) {
+    message_stream(
+      cursor: { initial_value: { timestamp: $last_received_ts } }
+      batch_size: 10
+    ) {
+      id
+      username
+      text
+      timestamp
+    }
+  }
+}`;
 
 const fetchOnlineUsersSubscription = gql`
   subscription {
@@ -24,20 +62,35 @@ function OnlineUsers({ dataStream }) {
 
   const { data } = useSubscription(fetchOnlineUsersSubscription);
 
+  const [isSubscriptionTabActive, toggleSubscriptionTab] = useState(true);
+
   const toggleMobileView = () => {
     setMobileView(!showMobileView);
   };
 
   const subscriptionStreamData = (isMobileView) => (
     <StyledOnlineUsers>
-      <p
+      <StyledQueryTab
         className={isMobileView ? "mobileuserListHeading" : "userListHeading"}
-        onClick={toggleMobileView}
       >
-        Subscription Stream
-        {isMobileView && <i className="fa fa-angle-up"></i>}
-      </p>
-      {((isMobileView && showMobileView) || !isMobileView) && (
+        <p
+          className={isSubscriptionTabActive ? "active" : ""}
+          role="button"
+          onClick={() => toggleSubscriptionTab(true)}
+        >
+          Subscription
+          {isMobileView && <i className="fa fa-angle-up"></i>}
+        </p>
+        <p
+          className={isSubscriptionTabActive ? "" : "active"}
+          role="button"
+          onClick={() => toggleSubscriptionTab(false)}
+        >
+          GraphQL Query
+          {isMobileView && <i className="fa fa-angle-up"></i>}
+        </p>
+      </StyledQueryTab>
+      {isSubscriptionTabActive ? (
         <ul
           className={
             isMobileView ? "mobileUserList" : "userList subscription-stream"
@@ -46,6 +99,14 @@ function OnlineUsers({ dataStream }) {
           <p className="subscription-stream">
             {JSON.stringify(dataStream?.message_stream, undefined, "\t")}
           </p>
+        </ul>
+      ) : (
+        <ul
+          className={
+            isMobileView ? "mobileUserList" : "userList subscription-stream"
+          }
+        >
+          <p className="subscription-stream">{streamingSubQuery}</p>
         </ul>
       )}
     </StyledOnlineUsers>
