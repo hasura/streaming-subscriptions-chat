@@ -36,10 +36,9 @@ export const BetaAccessForm = (props) => {
       </div>
       <h2>Streaming Subscriptions</h2>
       <p>
-        Hasura now allows you to instantly create an API for clients to fetch
-        large amounts of data, or "fast moving" data in Postgres as a continuous
-        stream. This API can be safely exposed to internal or external HTTP
-        clients.
+        Hasura now allows you to instantly create a secure API for clients to
+        fetch large amounts of data in Postgres as a continuous stream.
+        Subscribe to Hasura Newsletter for updates about new features.
       </p>
       <div
         data-paperform-id="hf-streaming-chat-app"
