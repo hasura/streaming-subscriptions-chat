@@ -449,6 +449,7 @@ export const StyledOnlineUsers = styled.div`
   }
 
   .subscription-stream {
+    font-family: "IBM Plex Mono", monospace;
     color: ${({ theme }) => theme.colors.text};
     font-size: 14px;
     font-weight: 500;
