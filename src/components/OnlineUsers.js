@@ -25,6 +25,7 @@ const StyledQueryTab = styled.div`
   .active {
     background: #344658;
     border-radius: 4px;
+    color: #fff;
   }
 
   code {
